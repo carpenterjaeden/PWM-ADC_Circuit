@@ -66,7 +66,7 @@ int main(){
         
         for (unsigned int i = 9; i >= 0; i--){
           displayNum(i);
-          delayMs1(1000);
+          delayMs(1000);
         }
         interrupt = motor;
       break;
