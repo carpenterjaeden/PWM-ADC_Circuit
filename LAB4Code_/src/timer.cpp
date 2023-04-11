@@ -49,7 +49,7 @@ TIFR1 |= (1 << OCF1A);
 }
 }
 
-/* Initialize timer 0, you should not turn the timer on here.
+// Initialize timer 0, you should not turn the timer on here.
 void initTimer0(){
 
 // set CTC mode prescaler = 64
