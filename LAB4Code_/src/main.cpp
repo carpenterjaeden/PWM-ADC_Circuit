@@ -48,7 +48,7 @@ int main(){
 	while (1) {
 
     unsigned int num = ADCL + ((unsigned int)ADCH << 8);
-    Serial.println(78);
+    Serial.println(num);
     Serial.flush();
 
 //switch case to determine delay based on the state we are in (motor or longDelat)
