@@ -19,10 +19,8 @@ void initADC(){
     ADMUX &= ~(1 << ADLAR);
 
     
-    // set Auto Trigger Source Selection
-  // Use free-running mode ADTS[2:0] = 0b000
-  // 
-  ADCSRB &= ~((1 << ADTS2) | (1 << ADTS1) | (1 << ADTS0));
+   // set Auto Trigger Source Selection. Use free-running mode ADTS[2:0] = 0b000
+  ADCSRB &= ~((1 << ADTS2) & (1 << ADTS1) & (1 << ADTS0));
 
     //set interrupt to disable
     ADMUX &= ~(1 << ADIE);
