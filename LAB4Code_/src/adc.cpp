@@ -18,17 +18,25 @@ void initADC(){
     //sets ADCH and ADCL to right adjusted
     ADMUX &= ~(1 << ADLAR);
 
-    //set auto trigger to disable
-    ADMUX &= ~(1 << ADATE);
+    
+    // set Auto Trigger Source Selection
+  // Use free-running mode ADTS[2:0] = 0b000
+  // 
+  ADCSRB &= ~((1 << ADTS2) | (1 << ADTS1) | (1 << ADTS0));
 
     //set interrupt to disable
     ADMUX &= ~(1 << ADIE);
 
-    //enables the ADC
-    ADCSRA |= (1 << ADEN) | (1 << ADATE);
 
+
+    // set the ADC clock frequemcy.  Use a pre-scaler of 128
+  // ADC clock frequency is 16 Mhz divided by pre-scaler = 125KHz
     // Sampling rate is 1/ ((1/125K Hz )*(13 clock cycles)) = 9615 KHz
     ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+
+    //enables the ADC and auto-triggering
+    ADCSRA |= (1 << ADEN) | (1 << ADATE);
+
     //disable ADC0 pin digital input - pin A0 on board
     DIDR0 |= (1 << ADC7D);
 
