@@ -26,8 +26,8 @@ void initADC(){
 
 
 
-    // set the ADC clock frequemcy.  Use a pre-scaler of 128  
-    //ADC clock frequency is 16 Mhz divided by pre-scaler = 125KHz,Sampling rate is 1/ ((1/125K Hz )*(13 clock cycles)) = 9615 KHz
+    // set the ADC clock frequency.  Use a pre-scaler of 128  
+    //(ADC clock frequency is 16 Mhz divided by pre-scaler = 125KHz,Sampling rate is 1/ ((1/125K Hz )*(13 clock cycles)) = 9615 KHz)
     ADCSRA |= (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
 
     //enables the ADC and auto-triggering
