@@ -38,7 +38,7 @@ void initADC(){
     ADCSRA |= (1 << ADEN) | (1 << ADATE);
 
     //disable ADC0 pin digital input - pin A0 on board
-    DIDR0 |= (1 << ADC7D);
+    DIDR0 |= (1 << ADC0D);
 
     //start a conversion
     ADCSRA |= (1<<ADSC);
