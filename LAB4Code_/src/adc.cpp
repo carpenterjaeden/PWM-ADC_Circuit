@@ -10,9 +10,9 @@ void initADC(){
     ADCSRB &= ~(1 << MUX5);
 
 
-    //sets vref to AVCC with external capaciter at AREF pin
-    ADMUX &= ~(1 << REFS1);
+    //sets vref to AVCC with external capaciter at AREF pin REFS[1:0] = 01
     ADMUX |= (1<< REFS0);
+    ADMUX &= ~(1 << REFS1);
 
 
     //sets ADCH and ADCL to right adjusted
