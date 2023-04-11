@@ -34,7 +34,9 @@ states interrupt = motor;
 int main(){
 
   Serial.begin(9600);
-  initTimer0();
+  //initTimer0();
+
+  //Timer 1 used for counting, timer 3 used for PWM, Switch used for state change, seven segment translates numbers to the display
   initTimer1();
   initPWMTimer3();
   initSwitchPD0();
@@ -54,7 +56,7 @@ int main(){
       Serial.flush();
     
 
-//switch case to determine delay based on the state we are in (motor or longDelat)
+//switch case to determine delay based on the state we are in (motor or counting)
     switch (interrupt){
       case motor:
       
@@ -64,7 +66,7 @@ int main(){
         
         for (unsigned int i = 9; i >= 0; i--){
           displayNum(i);
-          delayMs1(1000);
+          delayMs(1000);
         }
         interrupt = motor;
       break;
