@@ -3,17 +3,16 @@
 #include "adc.h"
 
 void initADC(){
-    //data direction for port A0
-    //DDRF &= ~(1 << PF0);
 
     //set input channel ADC0, sets mode to differential and gain to 10x
     ADMUX &= ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
     ADMUX &= ~((1 << MUX4) & ~(1 << MUX3));
-  ADCSRB &= ~(1 << MUX5);
+    ADCSRB &= ~(1 << MUX5);
 
 
-    //sets vref to internal 2.56 reference voltage
-    ADMUX |= (1 << REFS1) | (1<< REFS0);
+    //sets vref to AVCC with external capacitr at AREF pin
+    ADMUX &= ~(1 << REFS1);
+    ADMUX |= (1<< REFS0);
 
 
     //sets ADCH and ADCL to left adjusted
