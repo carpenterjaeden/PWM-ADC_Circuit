@@ -5,10 +5,6 @@
 //----------------------------------------------------------------------//
 
 #include "timer.h"
-//You many use any timer you wish for the microsecond delay and the millisecond delay
-
-
-/* Initialize timer 1, you should not turn the timer on here. Use CTC mode  .*/
 
 
 void initTimer1(){
@@ -54,7 +50,6 @@ TIFR1 |= (1 << OCF1A);
 }
 
 // /* Initialize timer 0, you should not turn the timer on here.
-// * You will need to use CTC mode */
 // void initTimer0(){
 
 // // set CTC mode prescaler = 64

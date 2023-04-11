@@ -14,7 +14,6 @@ void initADC(){
     ADMUX &= ~(1 << REFS1);
     ADMUX |= (1<< REFS0);
 
-
     //sets ADCH and ADCL to right adjusted
     ADMUX &= ~(1 << ADLAR);
 
