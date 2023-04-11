@@ -20,6 +20,7 @@
 #include "timer.h"
 #include "pwm.h"
 #include "sevensegment.h"
+#include "adc.h"
 
 // defines
 
@@ -46,17 +47,20 @@ int main(){
   initPWMTimer3();
   initSwitchPD0();
   initSevenSegment();
+  initADC();
 
 
 
   
   sei(); // Enable global interrupts.
   
+  unsigned int result = 0;
+  float voltage = 0;
 	while (1) {
 
-      unsigned int result = ADCL;
+      result = ADCL;
       result += ((unsigned int) ADCH) << 8;
-      unsigned int voltage = result * (4.586/1024.0);
+      voltage = result * (4.586/1024.0);
       Serial.println(voltage,2);
       Serial.flush();
     
