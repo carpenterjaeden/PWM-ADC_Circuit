@@ -33,6 +33,7 @@ states interrupt = motor;
   unsigned int portdhistory = 0;
 int main(){
 
+  Serial.begin(9600);
   initTimer0();
   initTimer1();
   initPWMTimer3();
@@ -46,10 +47,13 @@ int main(){
   
 	while (1) {
 
+    unsigned int num = ADCL + ((unsigned int)ADCH << 8);
+    Serial.println(78);
+    Serial.flush();
+
 //switch case to determine delay based on the state we are in (motor or longDelat)
     switch (interrupt){
       case motor:
-        
         changeDutyCycle(ADCL + ((unsigned int)ADCH << 8));
       break;
       case counting:
