@@ -77,12 +77,8 @@ int main(){
   return 0;
 }
 
-/* Implement an Pin Change Interrupt which handles the switch being
-* pressed and released. When the switch is pressed and released, the LEDs
-* change at twice the original rate. If the LEDs are already changing at twice
-* the original rate, it goes back to the original rate.
-*/
-//INT0 => PORTD0
+
+//Pin change interrupt: INT0 uses PORTD0
 ISR(INT0_vect){
 unsigned int changedbits;
 changedbits = PIND ^ portdhistory;
