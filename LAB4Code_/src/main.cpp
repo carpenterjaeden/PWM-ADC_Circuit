@@ -68,7 +68,8 @@ int main(){
         changeDutyCycle(ADCL + ((unsigned int)ADCH << 8));
       break;
       case counting:
-        
+      //set duty cycle at the 0
+        changeDutyCycle(512);
         for (unsigned int i = 9; i >= 0; i--){
           displayNum(i);
           delayMs1(1000);

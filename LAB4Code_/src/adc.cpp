@@ -6,7 +6,7 @@ void initADC(){
 
     //set input channel ADC0, sets mode to single ended input with MUX[5:0] = 0b000000
     ADMUX &= ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
-    ADMUX &= ~((1 << MUX4) & ~(1 << MUX3));
+    ADMUX &= ~((1 << MUX4) | (1 << MUX3));
     ADCSRB &= ~(1 << MUX5);
 
 
