@@ -1,10 +1,7 @@
-// Author:      Jaeden Carpenter   
-// Net ID:         carpenterjaeden
-// Date: 3/20/23         
-// Assignment:     Lab 3
-//
-// Description: This file implements the initialization of an external
-// switch.
+// Author: Jaeden Carpenter, Sam Kerns, Malcolm Hayes
+// Net ID: carpenterjaeden, s4k3, malcolmhayes
+// Date: 3/20/23
+// Assignment: Lab 4
 //----------------------------------------------------------------------//
 
 #include "switch.h"

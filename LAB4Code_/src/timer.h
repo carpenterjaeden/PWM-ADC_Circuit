@@ -1,7 +1,7 @@
-// Author:         
-// Net ID:         
-// Date:           
-// Assignment:     Lab 3
+// Author: Jaeden Carpenter, Sam Kerns, Malcolm Hayes
+// Net ID: carpenterjaeden, s4k3, malcolmhayes
+// Date: 3/20/23
+// Assignment: Lab 4
 //----------------------------------------------------------------------//
 
 #ifndef TIMER_H

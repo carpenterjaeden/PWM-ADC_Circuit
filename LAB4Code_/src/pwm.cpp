@@ -6,6 +6,7 @@ void initPWMTimer3(){
 
 //initialize pin
     DDRB |= (1 << DDB5);
+    PORTB |= (1 << PB5);
 //Set timer counter control register to fast PWM 10-bit mode
     TCCR3A |= (1 << WGM30);
     TCCR3A |= (1 << WGM31);
@@ -28,9 +29,12 @@ void initPWMTimer3(){
 
 void changeDutyCycle(unsigned int combo){
 
-if (combo >= 512)
+if (combo >= 512){
 OCR3A = (combo-512)*2;
+
+}
 else {
 OCR3A = (512 - combo)*2;
+
 }
 }

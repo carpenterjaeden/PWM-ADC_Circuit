@@ -1,14 +1,7 @@
-// Author: Jaeden Carpenter
-// Net ID: carpenterjaeden
+// Author: Jaeden Carpenter, Sam Kerns, Malcolm Hayes
+// Net ID: carpenterjaeden, s4k3, malcolmhayes
 // Date: 3/20/23
-// Assignment: Lab 3
-//----------------------------------------------------------------------//
-
-// Description: This file contains a programmatic overall description of the
-// program. It should never contain assignments to special function registers
-// for the exception key one-line code such as checking the state of the pin.
-//
-// Requirements:
+// Assignment: Lab 4
 //----------------------------------------------------------------------//
 
 
@@ -68,16 +61,19 @@ int main(){
 //switch case to determine delay based on the state we are in (motor or counting)
     switch (interrupt){
       case motor:
-      
+        PORTB |= (1<<PB5);
         changeDutyCycle(ADCL + ((unsigned int)ADCH << 8));
       break;
       case counting:
+      PORTB &= ~(1 << PB5);
       //set duty cycle at the 0
         changeDutyCycle(512);
         for (unsigned int i = 9; i >= 0; i--){
+          PORTB |= (1 << PB5);
           displayNum(i);
-          delayMs1(1000);
+          delayMs0(1000);
         }
+        
         interrupt = motor;
       break;
       default:
@@ -104,6 +100,7 @@ int main(){
     case debounce_release:
     delayMs0(1);
     dbState = wait_press;
+    interrupt = counting;
     break;
 
   }
@@ -123,7 +120,6 @@ if (dbState == wait_press){
 //if INT0 is triggered for release
 else if (dbState == wait_release){
   //change motor state to counting
-  interrupt = counting;
   dbState = debounce_release;
 }
 
