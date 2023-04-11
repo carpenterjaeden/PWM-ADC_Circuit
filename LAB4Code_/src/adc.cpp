@@ -4,7 +4,7 @@
 
 void initADC(){
 
-    //set input channel ADC0, sets mode to differential and gain to 10x
+    //set input channel ADC0, sets mode to single ended input with MUX[5:0] = 0b000000
     ADMUX &= ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
     ADMUX &= ~((1 << MUX4) & ~(1 << MUX3));
     ADCSRB &= ~(1 << MUX5);
@@ -15,8 +15,8 @@ void initADC(){
     ADMUX |= (1<< REFS0);
 
 
-    //sets ADCH and ADCL to left adjusted
-    ADMUX |= (1 << ADLAR);
+    //sets ADCH and ADCL to right adjusted
+    ADMUX &= ~(1 << ADLAR);
 
     //set auto trigger to disable
     ADMUX &= ~(1 << ADATE);
