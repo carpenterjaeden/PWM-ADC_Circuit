@@ -28,9 +28,14 @@
  * Define a set of states that can be used in the state machine using an enum.
  */
 typedef enum {counting, motor} states;
-states interrupt = motor;
+//global variable for motor states
+volatile states interrupt = motor;
 
-  unsigned int portdhistory = 0;
+typedef enum {wait_press, debounce_press, wait_release, debounce_release} debounce;
+//define global variable for debounce states
+volatile debounce dbState = wait_press;
+
+
 int main(){
 
   Serial.begin(9600);
@@ -75,7 +80,28 @@ int main(){
       break;
     }
 
-   
+  //Switch case for debounce states
+  switch(dbState){
+  //do nothing while waiting
+    case wait_press:
+    break;
+
+  //debounce press adds delay and goes to wait_release
+    case debounce_press:
+    delayMs0(1);
+    dbState = wait_release;
+    break;
+
+  //Do nothing while waiting
+    case wait_release:
+    break;
+  //After release, delay and then go back to waiting for press
+    case debounce_release:
+    delayMs0(1);
+    dbState = wait_press;
+    break;
+
+  }
 
 	}
   return 0;
@@ -84,10 +110,18 @@ int main(){
 
 //Pin change interrupt: INT0 uses PORTD0
 ISR(INT0_vect){
-unsigned int changedbits;
-changedbits = PIND ^ portdhistory;
-portdhistory = PIND;
-if(changedbits & (1 << PD0))
-{ interrupt = counting; }
+
+//if INT0 is triggered for press
+if (dbState == wait_press){
+  dbState = debounce_press;
+}
+//if INT0 is triggered for release
+else if (dbState == wait_release){
+  //change motor state to counting
+  interrupt = counting;
+  dbState = debounce_release;
+}
+
+
 
 }
