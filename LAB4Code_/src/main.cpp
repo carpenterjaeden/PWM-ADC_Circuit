@@ -47,13 +47,17 @@ int main(){
   
 	while (1) {
 
-    unsigned int num = ADCL + ((unsigned int)ADCH << 8);
-    Serial.println(num);
-    Serial.flush();
+      unsigned int result = ADCL;
+      result += ((unsigned int) ADCH) << 8;
+      unsigned int voltage = result * (4.586/1024.0);
+      Serial.println(voltage,2);
+      Serial.flush();
+    
 
 //switch case to determine delay based on the state we are in (motor or longDelat)
     switch (interrupt){
       case motor:
+      
         changeDutyCycle(ADCL + ((unsigned int)ADCH << 8));
       break;
       case counting:
