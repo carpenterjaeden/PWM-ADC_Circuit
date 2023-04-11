@@ -11,7 +11,7 @@ void initPWMTimer3(){
     TCCR3A |= (1 << WGM31);
     TCCR3B |= (1 << WGM32);
     TCCR3B &= ~(1 << WGM33);
-// set timer counter control register to prescaler of 8
+// set timer counter control register to prescaler of 1
     TCCR3B |= (1 << CS30); 
     TCCR3B &= ~(1 << CS31);
     TCCR3B &= ~(1 << CS32);
